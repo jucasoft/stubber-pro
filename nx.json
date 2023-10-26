@@ -23,7 +23,8 @@
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
     "e2e": {
-      "cache": true
+      "cache": true,
+      "inputs": ["default", "^production"]
     }
   },
   "namedInputs": {
@@ -40,5 +41,20 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudAccessToken": "NDkzNjdlNzEtYTMyNi00NzljLTk2MjktZWNmOWY2MGQ3YmI1fHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "NDkzNjdlNzEtYTMyNi00NzljLTk2MjktZWNmOWY2MGQ3YmI1fHJlYWQtd3JpdGU=",
+  "generators": {
+    "@nx/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "scss"
+    }
+  }
 }

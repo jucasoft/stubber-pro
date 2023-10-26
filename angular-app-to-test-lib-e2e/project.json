@@ -1,0 +1,33 @@
+{
+  "name": "angular-app-to-test-lib-e2e",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "angular-app-to-test-lib-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "angular-app-to-test-lib-e2e/cypress.config.ts",
+        "devServerTarget": "angular-app-to-test-lib:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "angular-app-to-test-lib:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "angular-app-to-test-lib:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["angular-app-to-test-lib-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["angular-app-to-test-lib"]
+}
