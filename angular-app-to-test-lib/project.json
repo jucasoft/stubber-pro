@@ -13,6 +13,9 @@
         "outputPath": "dist/angular-app-to-test-lib",
         "index": "angular-app-to-test-lib/src/index.html",
         "main": "angular-app-to-test-lib/src/main.ts",
+        "customWebpackConfig": {
+          "path": "angular-app-to-test-lib/webpack.config.js"
+        },
         "polyfills": ["zone.js"],
         "tsConfig": "angular-app-to-test-lib/tsconfig.app.json",
         "assets": [
