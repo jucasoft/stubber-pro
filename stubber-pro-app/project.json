@@ -5,12 +5,13 @@
   "prefix": "stubber-pro-nx",
   "sourceRoot": "stubber-pro-app/src",
   "tags": [],
+  "implicitDependencies": ["stubber-pro"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/stubber-pro-app",
+        "outputPath": "dist/stubber-pro-lib/src/lib/app",
         "index": "stubber-pro-app/src/index.html",
         "main": "stubber-pro-app/src/main.ts",
         "polyfills": ["zone.js"],
@@ -22,6 +23,7 @@
         "styles": ["stubber-pro-app/src/styles.scss"],
         "scripts": []
       },
+
       "configurations": {
         "production": {
           "budgets": [
