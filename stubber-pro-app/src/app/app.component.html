@@ -1,0 +1,30 @@
+<div class="mb-3">
+  <p-button type="button" icon="pi pi-upload" (click)="dump()" [disabled]="!items.length" styleClass="p-button-text"></p-button>
+  <p-button type="button" icon="pi pi-download" (click)="dump()" [disabled]="!items.length" styleClass="p-button-text"></p-button>
+  <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+  <p-button type="button" icon="pi pi-plus" (click)="add()" styleClass="p-button-text"></p-button>
+  <p-dropdown [options]="versions" [appendTo]="'body'" optionLabel="name"></p-dropdown>
+
+</div>
+<p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>KEY</th>
+      <th>created at</th>
+      <th>active</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{ item.key }}</td>
+      <td>{{ item.createdAt }}</td>
+      <td><p-toggleButton [ngModel]="item.active" onLabel="Yes" offLabel="No" (onChange)="onActiveChange(item)"></p-toggleButton></td>
+      <td><p-dropdown [options]="statesList" [appendTo]="'body'" optionLabel="name"></p-dropdown></td>
+      <td>
+        <p-button pRipple icon="pi pi-trash" (click)="delete(item)" styleClass="p-button-danger"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
