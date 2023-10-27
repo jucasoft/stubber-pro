@@ -53,6 +53,10 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "proxyConfig": "stubber-pro-app/proxy.conf.js",
+        "port": 4400
+      },
       "configurations": {
         "production": {
           "browserTarget": "stubber-pro-app:build:production"
