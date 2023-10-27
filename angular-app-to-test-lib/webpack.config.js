@@ -1,4 +1,4 @@
-const { stubberPro } = require('stubber-pro');
+const { stubberPro } = require('@jucasoft/stubber-pro');
 const path = require('path');
 
 const STUBBER_CONF = {
@@ -24,13 +24,16 @@ module.exports = {
       if (!devServer) {
         throw new Error('webpack - dev - server is not defined');
       }
-      const appStaticFileLocation = path.join(__dirname, "../", 'node_modules/stubber-pro/src/lib/app')
-      console.log("appStaticFileLocation: ", appStaticFileLocation);
+      const appStaticFileLocation = path.join(
+        __dirname,
+        '../',
+        'node_modules/stubber-pro/src/lib/app'
+      );
+      console.log('appStaticFileLocation: ', appStaticFileLocation);
 
-      stubberPro(devServer, STUBBER_CONF, appStaticFileLocation)
+      stubberPro(devServer, STUBBER_CONF, appStaticFileLocation);
 
       return middlewares;
-
-    }
-  }
-}
+    },
+  },
+};
