@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "nx run-many --target=build --projects=stubber-pro,stubber-pro-app --parallel=false"
+    "build": "nx run-many --target=build --projects=stubber-pro,stubber-pro-app --parallel=false",
+    "json-server": "cd .\\angular-app-to-test-lib\\server && node server.js",
+    "server:dev:angular-to-test-library": "nx run angular-app-to-test-lib:serve:development",
+    "server:dev:angular-stubber-pro-app": "nx run stubber-pro-app:serve:development",
+    "build-library": "nx run stubber-pro-app:build:development && cd .\\dist\\stubber-pro && npm pack && cd .. && cd .. && npm i .\\dist\\stubber-pro\\stubber-pro-0.0.0.tgz"
   },
   "private": true,
   "dependencies": {
