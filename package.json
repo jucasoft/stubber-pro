@@ -23,7 +23,7 @@
     "json-server": "^0.17.4",
     "micromatch": "^4.0.5",
     "primeicons": "^6.0.1",
-    "primeng": "^14.2.14-lts",
+    "primeng": "^16.6.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -73,7 +73,6 @@
     "verdaccio": "^5.0.4"
   },
   "optionalDependencies": {
-    "@jucasoft/stubber-pro": "file:dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.1.tgz"
   },
   "nx": {
     "includedScripts": []
