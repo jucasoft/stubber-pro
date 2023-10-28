@@ -592,6 +592,18 @@
       "username": "sarah",
       "country": "england",
       "password": "123"
+    },
+    {
+      "id": 1698494130140,
+      "username": "duncan",
+      "country": "australia",
+      "password": "123"
+    },
+    {
+      "id": 1698494130143,
+      "username": "sarah",
+      "country": "england",
+      "password": "123"
     }
   ],
   "profiles": [
@@ -1072,6 +1084,16 @@
     },
     {
       "id": 1698446349185,
+      "userId": 2,
+      "job": "developer"
+    },
+    {
+      "id": 1698494130153,
+      "userId": 1,
+      "job": "Plumber"
+    },
+    {
+      "id": 1698494130157,
       "userId": 2,
       "job": "developer"
     }
@@ -1579,6 +1601,16 @@
     },
     {
       "id": 1698446349191,
+      "name": "Hammer",
+      "category": "tools"
+    },
+    {
+      "id": 1698494130146,
+      "name": "Spanner",
+      "category": "tools"
+    },
+    {
+      "id": 1698494130149,
       "name": "Hammer",
       "category": "tools"
     }

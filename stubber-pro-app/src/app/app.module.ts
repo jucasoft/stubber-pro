@@ -7,7 +7,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FormsModule } from '@angular/forms';
-import { RippleModule } from "primeng/ripple";
+import { RippleModule } from 'primeng/ripple';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { RippleModule } from "primeng/ripple";
     ToggleButtonModule,
     FormsModule,
     RippleModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

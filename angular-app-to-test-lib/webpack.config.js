@@ -7,7 +7,7 @@ const STUBBER_CONF = {
   apiUri: '/stubber-pro/admin/api/v1',
   activeDefaultValue: true,
   getKey: (opt, req) => {
-    return path.join(req.originalUrl, `$(req.method}`);
+    return path.join(req.originalUrl, req.method);
   },
   routes: [
     {
