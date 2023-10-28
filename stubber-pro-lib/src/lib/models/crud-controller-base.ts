@@ -1,21 +1,16 @@
-import {BaseController} from "./base-controller";
-import * as express from "express";
 
-export class BaseRoute<T>{
-    router = express.Router()
-    constructor(controller: BaseController<T>) {
-        this.router.post(`/search`,controller.search)
-        this.router.post(`/select`,controller.select)
-        this.router.post(`/create`,controller.create)
-        this.router.post(`/createMany`,controller.createMany)
-        this.router.post(`/update`,controller.update)
-        this.router.post(`/updateMany`,controller.updateMany)
-        this.router.post(`/delete`,controller.delete)
-        this.router.post(`/deleteMany`,controller.deleteMany)
-    }
+import { Request, Response } from 'express'
+import {MyRequest} from "./my-request";
 
-    getRouter(){
-        return this.router
-    }
+export class BaseController<T> {
+    //add post controller
+    public async create (req: MyRequest<T>, res: Response):Promise<void> {}
+    public async createMany (req: MyRequest<T[]>, res: Response) :Promise<void>{}
+    public async search (req: MyRequest, res: Response) :Promise<void>{}
+    public async select (req: MyRequest, res: Response) :Promise<void>{}
+    public async update (req: MyRequest<T>, res: Response) :Promise<void>{}
+    public async updateMany (req: MyRequest<T[]>, res: Response) :Promise<void>{}
+    public async delete (req: MyRequest<T>, res: Response) :Promise<void>{}
+    public async deleteMany (req: MyRequest<T[]>, res: Response) :Promise<void>{}
 
 }
