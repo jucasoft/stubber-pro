@@ -1,5 +1,5 @@
-const { stubberPro } = require('@jucasoft/stubber-pro');
 const path = require('path');
+const { stubberPro } = require('@jucasoft/stubber-pro');
 
 const STUBBER_CONF = {
   basePath: 'stubber-pro',

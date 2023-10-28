@@ -1,9 +1,9 @@
 import type * as http from 'http';
-import {IncomingMessage, ServerResponse} from 'http';
+import { IncomingMessage, ServerResponse } from 'http';
 import * as zlib from 'zlib';
-import {Buffer} from "node:buffer";
-import {StubberProRouteOptions} from "./models/stubber-pro-options";
-import {matchPathFilter} from "./path-filter";
+import { Buffer } from 'node:buffer';
+import { StubberProRouteOptions } from './models/stubber-pro-options';
+import { matchPathFilter } from './path-filter';
 
 type Interceptor = (
   buffer: Buffer,
@@ -11,42 +11,45 @@ type Interceptor = (
   res: ServerResponse
 ) => void;
 
-export function responseInterceptor(opt: StubberProRouteOptions, interceptor: Interceptor) {
+export function responseInterceptor(
+  opt: StubberProRouteOptions,
+  interceptor: Interceptor
+) {
   return async function proxyResResponseInterceptor(
     req: IncomingMessage,
     res: ServerResponse,
     next: () => void
   ): Promise<void> {
-
-
-    const matched: boolean = matchPathFilter(opt.pathFilter, req.url, req)
+    const matched: boolean = matchPathFilter(opt.pathFilter, req.url, req);
 
     if (matched) {
-      next()
-      return
+      next();
+      return;
     }
 
-    const write = res.write.bind(res)
-    const writeHead = res.writeHead.bind(res)
-    const end = res.end.bind(res)
+    const write = res.write.bind(res);
+    const writeHead = res.writeHead.bind(res);
+    const end = res.end.bind(res);
     const body: any[] = [];
 
     (res as any).write = (...args: any[]) => {
-      body.push(args[0])
-      write(...args)
-    }
+      body.push(args[0]);
+      // @ts-ignore
+      write(...args);
+    };
 
     (res as any).writeHead = (...args: any[]) => {
-      writeHead(...args)
-    }
+      // @ts-ignore
+      writeHead(...args);
+    };
 
     (res as any).end = (...args: any[]) => {
-      const result = Buffer.concat(body)
-      interceptor(result, req, res)
-      end(...args)
-    }
+      const result = Buffer.concat(body);
+      interceptor(result, req, res);
+      end(...args);
+    };
 
-    next()
+    next();
   };
 }
 
@@ -54,11 +57,14 @@ export function responseInterceptor(opt: StubberProRouteOptions, interceptor: In
  * Streaming decompression of proxy response
  * source: https://github.com/apache/superset/blob/9773aba522e957ed9423045ca153219638a85d2f/superset-frontend/webpack.proxy-config.js#L116
  */
-export function decompress<TReq extends http.IncomingMessage = http.IncomingMessage>(
+export function decompress<
+  TReq extends http.IncomingMessage = http.IncomingMessage
+>(
   proxyRes: TReq,
-  contentEncoding?: string,
+  contentEncoding?: string
 ): TReq | zlib.Gunzip | zlib.Inflate | zlib.BrotliDecompress {
-  let _proxyRes: TReq | zlib.Gunzip | zlib.Inflate | zlib.BrotliDecompress = proxyRes;
+  let _proxyRes: TReq | zlib.Gunzip | zlib.Inflate | zlib.BrotliDecompress =
+    proxyRes;
   let decompress;
 
   switch (contentEncoding) {
@@ -98,7 +104,9 @@ function copyHeaders(originalResponse: any, response: any): void {
     let keys = Object.keys(originalResponse.headers);
 
     // ignore chunked, brotli, gzip, deflate headers
-    keys = keys.filter((key) => !['content-encoding', 'transfer-encoding'].includes(key));
+    keys = keys.filter(
+      (key) => !['content-encoding', 'transfer-encoding'].includes(key)
+    );
 
     keys.forEach((key) => {
       let value = originalResponse.headers[key];

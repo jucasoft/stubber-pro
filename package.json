@@ -7,7 +7,7 @@
     "json-server": "cd .\\angular-app-to-test-lib\\server && node server.js",
     "server:dev:angular-to-test-library": "nx run angular-app-to-test-lib:serve:development",
     "server:dev:angular-stubber-pro-app": "nx run stubber-pro-app:serve:development",
-    "build-library": "nx run stubber-pro-app:build:development && cd .\\dist\\stubber-pro && npm pack && cd .. && cd .. && npm i .\\dist\\stubber-pro\\stubber-pro-0.0.0.tgz"
+    "build-library": "nx run stubber-pro-app:build:development && cd .\\dist\\stubber-pro-lib && npm pack && cd .. && cd .. && npm i .\\dist\\stubber-pro-lib\\jucasoft-stubber-pro-0.0.1.tgz --legacy-peer-deps --save-optional"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~16.2.0",
     "@angular/router": "~16.2.0",
     "is-glob": "^4.0.3",
+    "json-server": "^0.17.4",
     "micromatch": "^4.0.5",
     "primeicons": "^6.0.1",
     "primeng": "^14.2.14-lts",
@@ -70,6 +71,9 @@
     "ts-node": "10.9.1",
     "typescript": "~5.1.3",
     "verdaccio": "^5.0.4"
+  },
+  "optionalDependencies": {
+    "@jucasoft/stubber-pro": "file:dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.1.tgz"
   },
   "nx": {
     "includedScripts": []
