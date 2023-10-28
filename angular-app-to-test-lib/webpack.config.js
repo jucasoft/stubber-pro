@@ -27,11 +27,11 @@ module.exports = {
       const appStaticFileLocation = path.join(
         __dirname,
         '../',
-        'node_modules/stubber-pro/src/lib/app'
+        'node_modules/@jucasoft/stubber-pro/src/lib/app'
       );
       console.log('appStaticFileLocation: ', appStaticFileLocation);
 
-      // stubberPro(devServer, STUBBER_CONF, appStaticFileLocation);
+      stubberPro(devServer, STUBBER_CONF, appStaticFileLocation);
 
       return middlewares;
     },

@@ -7,6 +7,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FormsModule } from '@angular/forms';
+import { RippleModule } from "primeng/ripple";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     ToggleButtonModule,
     FormsModule,
+    RippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
