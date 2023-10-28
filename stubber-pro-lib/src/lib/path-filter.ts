@@ -2,22 +2,24 @@ import * as isGlob from 'is-glob';
 import * as micromatch from 'micromatch';
 import * as url from 'url';
 import type * as http from 'http';
+
 enum ERRORS {
-  ERR_CONTEXT_MATCHER_GENERIC ='[HPM] Invalid context. Expecting something like: "/api" or ["/api", "/ajax"]',
-  ERR_CONTEXT_MATCHER_INVALID_ARRAY = '[HPM] Invalid pathFilter. Expecting something like: ["/api", "/ajax"] or ["/api/**","*.html"]',
+  ERR_CONTEXT_MATCHER_GENERIC = '[HPM] Invalid context. Expecting something like: "/api" or ["/api", "/ajax"]',
+  ERR_CONTEXT_MATCHER_INVALID_ARRAY = '[HPM] Invalid pathFilter. Expecting something like: ["/api", "/ajax"] or ["/api/**", "!**.html"]',
 }
+
 export type Filter<TReq = http.IncomingMessage> =
   | string
   | string[]
   | ((pathname: string, req: TReq) => boolean);
 
-//origina source https://github.com/chimurai/http-proxy-middleware/blob/82ad7c1bf6fecc7d4ceede7de619ded476ee2a87/src/path-filter.ts export function matchPathFilter<TReq = http. IncomingMessage>(
-
+// origina source https://github.com/chimurai/http-proxy-middleware/blob/82ad7c1bf6fecc7d4ceede7de619ded476ee2a07/src/path-filter.ts
 export function matchPathFilter<TReq = http.IncomingMessage>(
   pathFilter: Filter<TReq> = '/',
   uri: string | undefined,
   req: http.IncomingMessage,
 ): boolean {
+  // console.log("matchPathFilter.matchPathFilter()");
   // single path
   if (isStringPath(pathFilter as string)) {
     return matchSingleStringPath(pathFilter as string, uri);
