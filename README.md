@@ -29,7 +29,9 @@ Mentre lavoro al mio progetto, prendo la decisione di fare una migrazione signif
 
 Tuttavia, la vera sfida è verificare che la nuova UI sia consistente con quella vecchia e che non ci siano differenze grafiche indesiderate. Per fare ciò, decido di utilizzare la funzione di comparazione grafica offerta da Cypress. Questo strumento, molto utile, cattura screenshot prima e dopo la migrazione, confrontando automaticamente le differenze.
 
-Ma ecco che sorge un problema inaspettato: i dati. Fortunatamente, avevo installato Stubber-Pro, che aveva diligentemente registrato le chiamate durante l'esecuzione dei test prima della migrazione. Attraverso l'interfaccia grafica di Stubber-Pro, ho salvato queste chiamate in locale e, dopo la migrazione, ho potuto riutilizzarle come dati mockati. In questo modo, posso rieseguire i test con Cypress avendo la certezza che qualsiasi differenza grafica rilevata sia dovuta esclusivamente alla migrazione delle librerie e non a variazioni nei dati.
+Ma ecco che sorge un problema inaspettato: i dati ritornati dal BE sono molto differenti e di conseguenza ci sono molte differenze grafiche. 
+
+Fortunatamente, avevo installato Stubber-Pro, che aveva diligentemente registrato le chiamate durante l'esecuzione dei test prima della migrazione. Attraverso l'interfaccia grafica di Stubber-Pro, ho salvato queste chiamate in locale e, dopo la migrazione, ho potuto riutilizzarle come dati mockati. In questo modo, posso rieseguire i test con Cypress avendo la certezza che qualsiasi differenza grafica rilevata sia dovuta esclusivamente alla migrazione delle librerie e non a variazioni nei dati.
 
 Grazie alla combinazione di Cypress e Stubber-Pro, sono in grado di condurre un'analisi accurata e affidabile del mio progetto post-migrazione, garantendo che la UI sia esattamente come desidero.
 
