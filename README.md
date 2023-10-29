@@ -1,4 +1,4 @@
-# StubberPro
+# StubberPro (nome temporaneo)
 
 Stubber-Pro è uno strumento progettato per aiutare gli sviluppatori a gestire, catturare e simulare chiamate HTTP  in progetti basati su Node.js. Sia che stiate sviluppando un'applicazione front-end o un servizio back-end, Stubber-Pro offre funzionalità pratiche come la cattura di chiamate, la memorizzazione delle risposte e la simulazione. Con un'interfaccia front-end integrata, che ne facilita la gestione. Stubber-Pro punta a essere un compagno affidabile nel processo di sviluppo, facilitando sviluppo, testing e debug.
 
