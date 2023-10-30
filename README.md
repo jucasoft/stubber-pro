@@ -63,3 +63,48 @@ Sì, ci sono diversi software e librerie che forniscono funzionalità simili, sp
 Questi strumenti hanno le loro forze e debolezze, e la scelta dipende spesso dalle specifiche esigenze e preferenze di uno sviluppatore. 
 
 Tuttavia, l'obiettivo di **Stubber-Pro** è di fornire una soluzione integrata e flessibile che possa soddisfare molte delle esigenze comuni nello sviluppo e nel testing.
+
+
+# Istruzioni per l'Installazione e Uso:
+
+### 1. Installa le dipendenze:
+```shell
+npm i
+```
+
+### 2. Compila e installa localmente la libreria:
+
+Questo genera un file `.tgz` (ad esempio: `jucasoft-stubber-pro-0.0.1.tgz`) e lo installa come `optionalDependencies`.
+
+```shell
+npm run build-library
+```
+
+### 3. Avvia JsonServer:
+```shell
+npm run json-server
+```
+
+### 4. Esegui l'istanza locale dell'app Angular di test:
+```shell
+npm run server:dev:angular-to-test-library
+```
+
+### 5. Monitoraggio delle Chiamate:
+- Apri [http://localhost:4200](http://localhost:4200) nel browser.
+- visualizzerai una pagina completamente bianca con scritto ``aaaaaaa``
+- Accedi al tab di monitoraggio della rete e aggiorna la pagina per visualizzare le chiamate che l'applicazione esegue in automatico.
+
+### 6. Gestione delle Chiamate con Stubber-Pro:
+- Accedi all'interfaccia amministrativa su [http://localhost:4200/stubber-pro/admin/](http://localhost:4200/stubber-pro/admin/).
+- Funzionalità:
+  - Visualizza chiamate memorizzate.
+  - Esporta/Importa database di chiamate.
+  - Aggiorna elenco chiamate.
+  - Gestisci versioni.
+  - Dettagli delle colonne:
+    - **KEY**: Identificativo univoco della chiamata.
+    - **created at**: Timestamp del salvataggio.
+    - **active**: Attiva/disattiva risposta memorizzata.
+    - **status**: Simula risposte o errori.
+    - **Actions**: Modifica, cancella, ecc.
