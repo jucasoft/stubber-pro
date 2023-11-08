@@ -7,7 +7,7 @@
     "json-server": "cd .\\angular-app-to-test-lib\\server && node server.js",
     "server:dev:angular-to-test-library": "nx run angular-app-to-test-lib:serve:development",
     "server:dev:angular-stubber-pro-app": "nx run stubber-pro-app:serve:development",
-    "npm:build:publish": "nx run stubber-pro-app:build:development && cd .\\dist\\stubber-pro-lib && npm publish --tag beta",
+    "npm:build:publish": "nx run stubber-pro-app:build:development --skip-nx-cache  && cd .\\dist\\stubber-pro-lib && npm publish --tag beta",
     "build-library": "nx run stubber-pro-app:build:development && cd .\\dist\\stubber-pro-lib && npm pack && cd .. && cd .. && npm i .\\dist\\stubber-pro-lib\\jucasoft-stubber-pro-0.0.1.tgz --legacy-peer-deps --save-optional"
   },
   "private": true,
