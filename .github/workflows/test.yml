@@ -1,4 +1,4 @@
-name: Greeting on variable day
+name: Get name repo
 
 on:
   workflow_dispatch
@@ -13,6 +13,6 @@ jobs:
       Greeting: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
-        run: echo "Today is $DAY_OF_WEEK! branch $GITHUB_REF"
+        run: echo "Today is $DAY_OF_WEEK! REF $GITHUB_REF GITHUB_HEAD_REF $GITHUB_HEAD_REF"
         env:
           First_Name: Mona
