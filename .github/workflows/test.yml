@@ -13,6 +13,6 @@ jobs:
       Greeting: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
-        run: echo "Today is $DAY_OF_WEEK! REF $GITHUB_REF ttttt $GITHUB_HEAD_REF"
+        run: echo ls
         env:
           First_Name: Mona
