@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import * as zlib from 'zlib';
 import { Buffer } from 'node:buffer';
 import { StubberProRouteOptions } from './models/stubber-pro-options';
-import { matchPathFilter } from './path-filter';
+// import { matchPathFilter } from './path-filter';
 
 type Interceptor = (
   buffer: Buffer,
@@ -20,12 +20,12 @@ export function responseInterceptor(
     res: ServerResponse,
     next: () => void
   ): Promise<void> {
-    const matched: boolean = matchPathFilter(opt.pathFilter, req.url, req);
-
-    if (matched) {
-      next();
-      return;
-    }
+    // const matched: boolean = matchPathFilter(opt.pathFilter, req.url, req);
+    //
+    // if (matched) {
+    //   next();
+    //   return;
+    // }
 
     const write = res.write.bind(res);
     const writeHead = res.writeHead.bind(res);

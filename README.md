@@ -108,3 +108,109 @@ npm run server:dev:angular-to-test-library
     - **active**: Attiva/disattiva risposta memorizzata.
     - **status**: Simula risposte o errori.
     - **Actions**: Modifica, cancella, ecc.
+
+
+# installazione
+ 
+Per utilizzare StubberPro è necessario utilizzare una configurazione custom di webpack
+è possibile farlo con diversi sistemi, io ho preferito utilizzare `@angular-builders/custom-webpack`
+se non state utilizzando l'ultima versione di Angular, sarà necessario specificare la versione della libreria, ad esempio per angular 13 la libreria sarà `@angular-builders/custom-webpack@13`
+ - `npm i -D @angular-builders/custom-webpack`
+ - in angular.json:
+ ```
+{
+  "projects": {
+    ...
+    "{{project}}": { 
+      ...
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser", <== change builder
+          "options": {
+            "customWebpackConfig": {
+              "path": "./webpack.config.js",
+              "mergeRules": {
+                "externals": "replace"
+              }
+            },
+            ...
+          },
+          ...
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server", <== change builder
+          "options": {
+            "browserTarget": "{{project}}:build", <== IMPORTANT replace {{project}} with the project name
+            "port": 4400, <== only if you need it
+            "proxyConfig": "./proxy.conf.js", <== only if you need it
+          },
+          ...
+```
+ - add `webpack.config.js` con il seguente codice
+```js
+module.exports = {
+  devServer: {
+    historyApiFallback: true,
+    setupMiddlewares: function (middlewares, devServer) {
+      if (!devServer) {
+        throw new Error('webpack - dev - server is not defined');
+      }
+      console.log('==================== setupMiddlewares ========================')
+      return middlewares;
+    }
+  }
+};
+```
+ - avviare angular in dev mode
+ - nelle prime righe della console, se tutto funziona correttamente avrete la dicitura`'==================== setupMiddlewares ========================'` 
+ - ok funziona, ci meritiamo un caffè, per ora abbiamo solo permesso al nostro progetto angular di avere una configurazione custom di webpack, ora dobbiamo aggiungere la libreria StubberPro.
+ - `npm i -D @jucasoft\stubber-pro`
+ - modifichiamo il contenuto del file `webpack.config.js` con:
+```js
+"use strict";
+exports.__esModule = true;
+var stubber_pro = require("@jucasoft/stubber-pro");
+var path = require("path");
+console.log('stubberPro: ', stubber_pro.stubberPro);
+var STUBBER_CONF = {
+  basePath: 'stubber-pro',
+  appUri: '/stubber-pro/admin',
+  apiUri: '/stubber-pro/admin/api/v1',
+  activeDefaultValue: true,
+  getKey: function (opt, req) {
+    // return path.join(req.url, `${req.method}${new Date().getTime()}.json`)
+    return path.join(req.originalUrl, "".concat(req.method));
+  },
+  routes: [
+    {
+      pathFilter: [],
+      routePath: '/api/*' // percorso che si vuole catturare
+    },
+  ]
+};
+module.exports = {
+  devServer: {
+    historyApiFallback: true,
+    setupMiddlewares: function (middlewares, devServer) {
+      if (!devServer) {
+        throw new Error('webpack - dev - server is not defined');
+      }
+      
+      // percorso adatto a progetti angular
+      var appStaticFileLocation = path.join(__dirname, 'node_modules/@jucasoft/stubber-pro/src/lib/app'); 
+      
+      // percorso adatto a progetti nx
+      // const appStaticFileLocation = path.join(__dirname, "../", 'node_modules/stubber-pro/src/lib/app') 
+      
+      // IMPORTANTE viene stampato il percorso assoluto, verificare che sia corretto
+      console.log('appStaticFileLocation: ', appStaticFileLocation); 
+      
+      (0, stubber_pro.stubberPro)(devServer, STUBBER_CONF, appStaticFileLocation);
+      return middlewares;
+    }
+  }
+};
+
+```
+ - riavviare angular in dev mode
+ - aprire http://localhost:4200/stubber-pro/admin/ per accedere alla sezione amministrativa di stubber-pro
