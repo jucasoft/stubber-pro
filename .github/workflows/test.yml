@@ -1,7 +1,8 @@
 name: Get name repo
 
 on:
-  workflow_dispatch
+  release:
+    types: [created]
 
 env:
   DAY_OF_WEEK: Monday
@@ -13,6 +14,6 @@ jobs:
       Greeting: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
-        run: echo "Today is $DAY_OF_WEEK! REF $GITHUB_REF GITHUB_HEAD_REF $GITHUB_HEAD_REF"
+        run: echo "Today is $DAY_OF_WEEK! REF $GITHUB_REF ttttt $GITHUB_HEAD_REF"
         env:
           First_Name: Mona
