@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
   reset() {
     this.http
-      .post<any[]>('api/v1/item/search', { id: 111 })
+      .post<any[]>('api/v1/item/search', { id: 0 })
       .subscribe((items: any[]) => (this.items = items));
   }
 
@@ -46,8 +46,16 @@ export class AppComponent implements OnInit {
 
   dump() {
     this.http
-      .post<any[]>('api/v1/dump', {})
+      .post<any[]>('api/v1/utils/dump', {})
       .subscribe((items: any[]) => (this.items = items));
+  }
+
+  restore() {
+    this.http
+      .post<any[]>('api/v1/utils/restore', {})
+      .subscribe((items: any[]) => {
+        (this.items = items)
+      });
   }
 
   add() {
@@ -60,5 +68,9 @@ export class AppComponent implements OnInit {
     this.http
       .post<any[]>('api/v1/item/update', { ...item, active: !item.active })
       .subscribe((items: any[]) => (this.items = items));
+  }
+
+  deleteAll(items:any[]) {
+    items.forEach((item)=>this.delete(item))
   }
 }
