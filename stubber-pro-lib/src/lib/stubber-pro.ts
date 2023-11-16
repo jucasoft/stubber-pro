@@ -13,13 +13,14 @@ import { MyRequest } from './models/my-request';
 import { hasOwnProperty } from './utility';
 import { responseInterceptor } from './response-interceptor';
 import { BaseRoute } from './models/route-base';
+import {open,existsSync, readFileSync, writeFileSync} from "fs";
 
 export function stubberPro(
   devServer: any,
   opt: StubberProOptions,
   appStaticFileLocation: string
 ): void {
-  const db: Db = {};
+  let db: Db = {};
 
   const onProxyReq = (
     req: IncomingMessage,
@@ -86,17 +87,48 @@ export function stubberPro(
   }
 
   // devServer.app.use(express.json())
-
-  devServer.app.post(
-    `${opt.appUri}/dump`,
-    (req: MyRequest<DbItem>, response: Response) => {
-      // response.send(JSON.stringify(opt));
+  const dump = express.Router();
+  dump.post(`/dump`,     (req: MyRequest<DbItem>, response: Response) => {
+    try {
+      writeFileSync(`stubber-pro-dump.spd`, JSON.stringify(db));
+      response.send(JSON.stringify({hasError:false, data:{}, message:''}));
+    } catch (e) {
+      console.error(`Error writing stubber-pro-dump.spd.`);
     }
-  );
-
-  devServer.app.get(`${opt.appUri}/options`, (_: any, response: any) => {
-    response.send(JSON.stringify(opt));
   });
+  dump.post(`/restore`,     (req: MyRequest<DbItem>, response: Response) => {
+    open(`stubber-pro-dump.spd`, 'r', (err:any, fd:any) => {
+
+      if (err) {
+        if (err.code === 'ENOENT') {
+          console.error('stubber-pro-dump.spd does not exist');
+          return;
+        }
+      }
+
+      try {
+        const file = readFileSync(`stubber-pro-dump.spd`)
+        const fileToString = file.toString()
+        const dbTemp = JSON.parse(fileToString);
+        const dbKeys = Object.keys(dbTemp)
+        dbKeys.forEach(key => {
+          db[key] = dbTemp[key]
+        })
+        const keys = Object.keys(db);
+        response.send(
+          keys.map((key: string) => ({ ...db[key], key , data:null}))
+        );
+      } catch (e) {
+        console.error(`Error reading stubber-pro-dump.spd.`);
+      }
+    });
+  });
+  dump.get(`${opt.appUri}/options`, (_: any, response: any) => {
+    response.send(opt);
+  });
+  devServer.app.use(`${opt.apiUri}/utils`, express.json());
+  devServer.app.use(`${opt.apiUri}/utils`, dump);
+
 
   const itemController = new DbItemController(db);
   const router = new BaseRoute<DbItem>(itemController).getRouter();
