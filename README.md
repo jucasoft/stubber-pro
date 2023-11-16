@@ -214,3 +214,19 @@ module.exports = {
 ```
  - riavviare angular in dev mode
  - aprire http://localhost:4200/stubber-pro/admin/ per accedere alla sezione amministrativa di stubber-pro
+
+
+# note sviluppo
+comandi necessari per lo svilupo della libreria.
+
+compila e installa la libreria nel progetto corrente
+`npm run build-library`
+
+avvio il server per i test http://localhost:3000/api/v1
+`npm run json-server`
+
+avvio il FE in angular per testare la libreria http://localhost:4200/
+`npm run serve:dev:angular-to-test-library`
+
+avvio il FE in angular per lo sviluppo della parte amministrativa i stubber pro http://localhost:4400/
+`npm run serve:dev:angular-stubber-pro-app`
