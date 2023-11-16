@@ -18,7 +18,7 @@ export class DbItemController extends BaseController<DbItem> {
     const criteria = req.body;
     const keys = Object.keys(this.db);
     res.send(
-      JSON.stringify(keys.map((key: string) => ({ ...this.db[key], key })))
+      keys.map((key: string) => ({ ...this.db[key], key , data:null}))
     );
   };
 
