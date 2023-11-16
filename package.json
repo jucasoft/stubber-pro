@@ -5,11 +5,11 @@
   "scripts": {
     "build": "nx run-many --target=build --projects=stubber-pro,stubber-pro-app --parallel=false",
     "json-server": "cd ./angular-app-to-test-lib/server && node server.js",
-    "server:dev:angular-to-test-library": "nx run angular-app-to-test-lib:serve:development",
-    "server:dev:angular-stubber-pro-app": "nx run stubber-pro-app:serve:development",
+    "serve:dev:angular-to-test-library": "nx run angular-app-to-test-lib:serve:development",
+    "serve:dev:angular-stubber-pro-app": "nx run stubber-pro-app:serve:development",
     "npm:build:publish": "nx run stubber-pro-app:build:development --skip-nx-cache  && cd ./dist/stubber-pro-lib && npm publish --tag=beta  --access=public",
     "npm:build": "nx run stubber-pro-app:build:development --skip-nx-cache",
-    "build-library": "nx run stubber-pro-app:build:development && cd ./dist/stubber-pro-lib && npm pack && cd .. && cd .. && npm i ./dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.1.tgz --legacy-peer-deps --save-optional"
+    "build-library": "nx run stubber-pro-app:build:development && cd ./dist/stubber-pro-lib && npm pack && cd .. && cd .. && npm i ./dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.6-beta.tgz --legacy-peer-deps --save-optional"
   },
   "private": true,
   "dependencies": {
@@ -77,7 +77,7 @@
     "verdaccio": "^5.0.4"
   },
   "optionalDependencies": {
-    "@jucasoft/stubber-pro": "file:dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.1.tgz"
+    "@jucasoft/stubber-pro": "file:dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.6-beta.tgz"
   },
   "nx": {
     "includedScripts": []
