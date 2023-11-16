@@ -1,10 +1,10 @@
-<div class="mb-3">
-  <p-button type="button" icon="pi pi-upload" (click)="dump()" [disabled]="!items.length" styleClass="p-button-text"></p-button>
+<div class="mb-3 p-buttonset">
+  <p-button type="button" icon="pi pi-upload" (click)="restore()" styleClass="p-button-text"></p-button>
   <p-button type="button" icon="pi pi-download" (click)="dump()" [disabled]="!items.length" styleClass="p-button-text"></p-button>
   <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+  <p-button type="button" icon="pi pi-trash" (click)="deleteAll(items)" styleClass="p-button-danger"></p-button>
   <p-button type="button" icon="pi pi-plus" (click)="add()" styleClass="p-button-text"></p-button>
   <p-dropdown [options]="versions" [appendTo]="'body'" optionLabel="name"></p-dropdown>
-
 </div>
 <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">
