@@ -9,6 +9,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FormsModule } from '@angular/forms';
 import { RippleModule } from 'primeng/ripple';
 import { HttpClientModule } from '@angular/common/http';
+import { RootStoreModule } from './root-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     RippleModule,
     HttpClientModule,
+    RootStoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
