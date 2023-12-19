@@ -1,6 +1,6 @@
 {
   "name": "@jucasoft/stubber-pro",
-  "version": "0.0.7-beta",
+  "version": "0.0.8-beta",
   "dependencies": {
     "@swc/helpers": "~0.5.2",
     "tslib": "^2.3.0"
