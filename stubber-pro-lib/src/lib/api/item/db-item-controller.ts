@@ -17,9 +17,11 @@ export class DbItemController extends BaseController<DbItem> {
     console.log('ItemController.search()');
     const criteria = req.body;
     const keys = Object.keys(this.db);
-    res.send(
-      keys.map((key: string) => ({ ...this.db[key], key , data:null}))
-    );
+    res.send({
+      hasError:false,
+      message:'',
+      data:keys.map((key: string) => ({...this.db[key], key, data: null}))
+    });
   };
 
   // public select = async (req: MyRequest<Criteria>, res: Response) :Promise<void> =>{}
@@ -33,9 +35,11 @@ export class DbItemController extends BaseController<DbItem> {
     console.log('DbItem: ', DbItem);
     this.db[dbItem.key] = dbItem;
     const keys = Object.keys(this.db);
-    res.send(
-      JSON.stringify(keys.map((key: string) => ({ ...this.db[key], key })))
-    );
+    res.send({
+      hasError:false,
+      message:'',
+      data:dbItem
+    });
   };
   // public updateMany = async (req: MyRequest<DbItem[]>, res: Response) :Promise<void>=> {}
 
@@ -47,9 +51,12 @@ export class DbItemController extends BaseController<DbItem> {
     console.log('DbItem: ', DbItem);
     delete this.db[dbItem.key];
     const keys = Object.keys(this.db);
-    res.send(
-      JSON.stringify(keys.map((key: string) => ({ ...this.db[key], key })))
-    );
+
+    res.send({
+        hasError:false,
+        message:'',
+        data:dbItem
+      });
   };
   // public deleteMany = async (req: MyRequest<DbItem[]>, res: Response) :Promise<void>=> {}
 }
