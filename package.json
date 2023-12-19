@@ -9,7 +9,7 @@
     "serve:dev:angular-stubber-pro-app": "nx run stubber-pro-app:serve:development",
     "npm:build:publish": "nx run stubber-pro-app:build:development --skip-nx-cache  && cd ./dist/stubber-pro-lib && npm publish --tag=beta  --access=public",
     "npm:build": "nx run stubber-pro-app:build:development --skip-nx-cache",
-    "build-library": "nx run stubber-pro-app:build:development && cd ./dist/stubber-pro-lib && npm pack && cd .. && cd .. && npm i ./dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.6-beta.tgz --legacy-peer-deps --save-optional"
+    "build-library": "nx run stubber-pro-app:build:development && cd ./dist/stubber-pro-lib && npm pack && cd .. && cd .. && npm i ./dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.8-beta.tgz --legacy-peer-deps --save-optional"
   },
   "private": true,
   "dependencies": {
@@ -21,10 +21,17 @@
     "@angular/platform-browser": "~16.2.0",
     "@angular/platform-browser-dynamic": "~16.2.0",
     "@angular/router": "~16.2.0",
+    "@ngrx/component": "^16.3.0",
+    "@ngrx/effects": "^16.3.0",
+    "@ngrx/entity": "^16.3.0",
+    "@ngrx/router-store": "^16.3.0",
+    "@ngrx/store": "^16.3.0",
+    "@ngrx/store-devtools": "^16.3.0",
     "@swc/helpers": "~0.5.2",
     "is-glob": "^4.0.3",
     "json-server": "^0.17.4",
     "micromatch": "^4.0.5",
+    "ngrx-entity-crud": "^16.0.0",
     "primeicons": "^6.0.1",
     "primeng": "^16.6.0",
     "rxjs": "~7.8.0",
@@ -77,7 +84,7 @@
     "verdaccio": "^5.0.4"
   },
   "optionalDependencies": {
-    "@jucasoft/stubber-pro": "file:dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.6-beta.tgz"
+    "@jucasoft/stubber-pro": "file:dist/stubber-pro-lib/jucasoft-stubber-pro-0.0.8-beta.tgz"
   },
   "nx": {
     "includedScripts": []
