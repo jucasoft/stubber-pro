@@ -3,11 +3,31 @@
     "target": "es2022",
     "useDefineForClassFields": false,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
+		"paths": {
+			"@components/*": [
+				"stubber-pro-app/src/app/main/components/*"
+			],
+			"@services/*": [
+				"stubber-pro-app/src/app/main/services/*"
+			],
+			"@models/*": [
+				"stubber-pro-app/src/app/main/models/*"
+			],
+			"@views/*": [
+				"stubber-pro-app/src/app/main/views/*"
+			],
+			"@core/*": [
+				"stubber-pro-app/src/app/core/*"
+			],
+			"@root-store/*": [
+				"stubber-pro-app/src/app/root-store/*"
+			]
+		}
   },
   "files": [],
   "include": [],
